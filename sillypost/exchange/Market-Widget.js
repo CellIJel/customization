@@ -68,7 +68,7 @@
             text-align: center;
         }
 
-        #market-price {
+        #market-price, #market-owned {
             font-size: 14px;
             text-align: center;
             margin: 5px 0;
@@ -101,6 +101,12 @@
         .status-color-mid { color: #888888; }
         .status-color-inshambles { color: #44bb44; }
         .status-color-soover { color: #00ff00; }
+
+        .market-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
     `;
     document.head.appendChild(styleSheet);
 
@@ -116,8 +122,11 @@
             </div>
         </h3>
         <div class="widget-content">
-            <div id="market-status">Loading...</div>
-            <div id="market-price">Price: ... beans</div>
+            <div class="market-stats">
+                <div id="market-status">Loading...</div>
+                <div id="market-price">Price: ... beans</div>
+                <div id="market-owned">Owned: ... sillies</div>
+            </div>
         </div>
     `;
     document.body.appendChild(widget);
@@ -183,15 +192,32 @@
         widget.remove();
     });
 
+    // Get owned sillies
+    async function getSilliesOwned() {
+        try {
+            const response = await fetch('/games/sillyexchange/owned', {method: 'POST'});
+            if (!response.ok) return null;
+            return await response.text();
+        } catch (error) {
+            console.error('Error getting owned sillies:', error);
+            return null;
+        }
+    }
+
     // Market status update function
     async function updateMarketStatus() {
         try {
-            const response = await fetch('/games/sillyexchange', {method: 'POST'});
-            if (!response.ok) return;
+            const [marketResponse, ownedSillies] = await Promise.all([
+                fetch('/games/sillyexchange', {method: 'POST'}),
+                getSilliesOwned()
+            ]);
 
-            const state = await response.json();
+            if (!marketResponse.ok) return;
+
+            const state = await marketResponse.json();
             const statusElm = document.getElementById('market-status');
             const priceElm = document.getElementById('market-price');
+            const ownedElm = document.getElementById('market-owned');
 
             let statusText = '';
             let statusClass = '';
@@ -222,6 +248,12 @@
             statusElm.textContent = statusText;
             statusElm.className = `status-color-${statusClass}`;
             priceElm.textContent = `Price: ${state.price} dollars`;
+
+            if (ownedSillies !== null) {
+                ownedElm.textContent = `Owned: ${ownedSillies} sillies`;
+            } else {
+                ownedElm.textContent = 'Owned: ... sillies';
+            }
 
         } catch (error) {
             console.error('Error updating market status:', error);
