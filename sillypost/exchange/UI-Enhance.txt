@@ -12,9 +12,9 @@
 (function() {
     'use strict';
 
-    const SILLY_D_IMAGE = 'https://github.com/CellIJel/css/blob/main/sillypost/exchange/sillyD.png?raw=true';
-    const SILLY_P_IMAGE = 'https://github.com/CellIJel/css/blob/main/sillypost/exchange/sillyP.png?raw=true';
-    const SILLY_C_IMAGE = 'https://github.com/CellIJel/css/blob/main/sillypost/exchange/sillyC.png?raw=true';
+    const SILLY_D_IMAGE = 'https://github.com/CellIJel/customization/blob/main/sillypost/exchange/sillyD.png?raw=true';
+    const SILLY_P_IMAGE = 'https://github.com/CellIJel/customization/blob/main/sillypost/exchange/sillyP.png?raw=true';
+    const SILLY_C_IMAGE = 'https://github.com/CellIJel/customization/blob/main/sillypost/exchange/sillyC.png?raw=true';
 
     // Cache DOM selectors and status messages
     const STATUS_MESSAGES = {
