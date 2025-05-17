@@ -33,19 +33,24 @@
             user-select: none;
         }
 
-        a:hover {
-            text-shadow: 0 0 3px #ffffff80;
-            color: #fff !important;
-            font-weight: bold;
-            font-family: arial;
-        }
+        #sillypost-market-widget .sillypost-market-title {
+    transition: all .2s;
+    color: #fff !important;
+    font-weight: bold;
+    font-family: arial;
+}
 
-        a {
-        transition: all .2s;
-        color: #fff !important;
-        font-weight: bold;
-        font-family: arial;
-        }
+       #sillypost-market-widget .sillypost-market-title:hover {
+    text-shadow: 0 0 3px #ffffff80;
+    color: #fff !important;
+    font-weight: bold;
+    font-family: arial;
+}
+
+        #sillypost-market-widget .sillypost-widget-button {
+    font-weight: bold;
+    color: #fff !important;
+}
 
         #sillypost-price-flash-overlay {
             position: fixed;
@@ -117,11 +122,6 @@
         .sillypost-widget-controls {
             display: flex;
             gap: 5px;
-        }
-
-        button {
-        font-weight: bold;
-        color:#fff; !important
         }
 
         .sillypost-widget-button {
