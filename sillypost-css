@@ -1,3 +1,6 @@
+#header {
+  background: none;
+}
 body {
   background-color: #1b1b1b;
   font-family: arial;
@@ -5,10 +8,6 @@ body {
 
 #wrapper {
   box-shadow: none;
-}
-
-#header {
-  background: none;
 }
 
 #profile-posts {
@@ -268,14 +267,14 @@ form[action="/profile/edit"] input[type="submit"]:hover {
 }
 
 .mail {
-  background-color: var(--mail-bg, #fff);
-  border: 1px solid #ccc;
+  background-color: #222;
+  border: none;
   border-radius: 8px;
   padding: 12px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  box-shadow: 0 2px 4px #0000000d;
+  box-shadow: 0 2px 8px #0000004d !important;
   transition: background .3s, border-color .3s;
 }
 
@@ -430,4 +429,19 @@ form[action="/profile/edit"] input[type="submit"]:hover {
   border-radius: 8px;
   box-shadow: 0 2px 8px #0000004d;
   color: white;
+}
+
+#mail {
+  background: #222 !important;
+  box-shadow: 0 2px 8px #0000004d !important;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.mail-subject {
+  color: #888
+}
+
+.game {
+  border-image: none;
 }
