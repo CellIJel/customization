@@ -18,7 +18,7 @@
         if (beansElement) {
             const beansText = beansElement.textContent;
             const beansNumber = beansText.match(/\d+/)?.[0] || '';
-            beansElement.innerHTML = `<img src="/static/bean.png" alt="dollars"> ${beansNumber} dollars`;
+            beansElement.innerHTML = `<img src="https://github.com/CellIJel/css/blob/main/sillypost/desilly/sillyD.png?raw=true" alt="dollars"> ${beansNumber} dollars`;
         }
 
         // Change ipods to plaques
@@ -26,7 +26,13 @@
         if (ipodsElement) {
             const ipodsText = ipodsElement.textContent;
             const ipodsNumber = ipodsText.match(/\d+/)?.[0] || '';
-            ipodsElement.innerHTML = `<img src="/static/ipod.png" alt="plaques"> ${ipodsNumber} plaques`;
+            ipodsElement.innerHTML = `<img src="https://github.com/CellIJel/css/blob/main/sillypost/desilly/sillyP.png?raw=true" alt="plaques"> ${ipodsNumber} plaques`;
         }
-    });
+
+        const quartersElement = document.querySelector('#header-quarters');
+        if (quartersElement) {
+            const quartersText = quartersElement.textContent;
+            const quartersNumber = quartersText.match(/\d+/)?.[0] || '';
+            quartersElement.innerHTML = `<img src="https://github.com/CellIJel/css/blob/main/sillypost/desilly/sillyC.png?raw=true" alt="quarters"> ${quartersNumber} quarters`;
+    }});
 })();
