@@ -446,6 +446,10 @@ form[action="/profile/edit"] input[type="submit"]:hover {
   border-image: none;
 }
 
+#game-area {
+  color:black;
+}
+
 #guesses, #complete-banner {
   color:black
 }
