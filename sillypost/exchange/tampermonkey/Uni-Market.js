@@ -33,6 +33,20 @@
             user-select: none;
         }
 
+        a:hover {
+            text-shadow: 0 0 3px #ffffff80;
+            color: #fff !important;
+            font-weight: bold;
+            font-family: arial;
+        }
+
+        a {
+        transition: all .2s;
+        color: #fff !important;
+        font-weight: bold;
+        font-family: arial;
+        }
+
         #sillypost-price-flash-overlay {
             position: fixed;
             top: 0;
@@ -68,10 +82,18 @@
             margin: 0;
         }
 
+        button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 3px 6px #00000040;
+        background: none;
+        }
+
         .sillypost-market-title {
             cursor: pointer;
             color: #fff;
             text-decoration: none;
+            font-weight: bold;
+            font-family: arial;
         }
 
         .sillypost-market-title:hover {
@@ -97,10 +119,15 @@
             gap: 5px;
         }
 
+        button {
+        font-weight: bold;
+        color:#fff; !important
+        }
+
         .sillypost-widget-button {
             background: none;
             border: none;
-            color: #888;
+            color: #fff;
             cursor: pointer;
             font-size: 12px;
             padding: 2px;
@@ -170,7 +197,7 @@
         const overlay = document.getElementById('sillypost-price-flash-overlay');
         overlay.style.backgroundColor = priceUp ? '#00ff00' : '#ff0000';
         overlay.classList.add('flash');
-        
+
         setTimeout(() => {
             overlay.classList.remove('flash');
         }, 200);
@@ -191,7 +218,7 @@
 
     function dragStart(e) {
         if (e.target.classList.contains('sillypost-widget-button') || e.target.classList.contains('sillypost-market-title')) return;
-        
+
         initialX = e.clientX - xOffset;
         initialY = e.clientY - yOffset;
 
@@ -284,12 +311,12 @@
             const statusElm = document.getElementById('sillypost-market-status');
             const priceElm = document.getElementById('sillypost-market-price');
             const ownedElm = document.getElementById('sillypost-market-owned');
-            
+
             // Check if price changed and flash screen
             if (previousPrice !== null && state.price !== previousPrice) {
                 const priceUp = state.price > previousPrice;
                 flashScreen(priceUp);
-                
+
                 // Add temporary color to price
                 priceElm.classList.add(priceUp ? 'price-up' : 'price-down');
                 setTimeout(() => {
@@ -297,10 +324,10 @@
                 }, 1000);
             }
             previousPrice = state.price;
-            
+
             let statusText = '';
             let statusClass = '';
-            
+
             switch (state.status.toLowerCase()) {
                 case 'soover':
                     statusText = 'BUY';
@@ -327,7 +354,7 @@
             statusElm.textContent = statusText;
             statusElm.className = `status-color-${statusClass}`;
             priceElm.textContent = `Price: ${state.price} beans`;
-            
+
             if (ownedSillies !== null) {
                 ownedElm.textContent = `Owned: ${ownedSillies} sillies`;
             } else {
