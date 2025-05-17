@@ -280,7 +280,7 @@ form[action="/profile/edit"] input[type="submit"]:hover {
 
 .mail {
   background-image: none !important;
-  border-image:  !important;
+  border-image: none !important;
 }
 
 .mail:hover {
