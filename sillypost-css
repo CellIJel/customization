@@ -408,3 +408,11 @@ form[action="/profile/edit"] input[type="submit"]:hover {
   border-image: none !important;
   background-image: none !important;
 }
+
+.group {
+  background-color:#1c1c1c;
+  background: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #0000004d;
+  color: white;
+}
