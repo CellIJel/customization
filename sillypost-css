@@ -19,8 +19,13 @@ body {
   border-left: #fff;
 }
 
+link[rel="shortcut icon"],
+link[rel="icon"] {
+  content: url("https://raw.githubusercontent.com/CellIJel/cellijel.github.io/refs/heads/main/stylesheets/favi.ico") !important;
+}
+
 #logo {
-  content: url("https://raw.githubusercontent.com/CellIJel/cellijel.github.io/refs/heads/main/stylesheets/favi.png");
+  content: url("https://raw.githubusercontent.com/CellIJel/cellijel.github.io/refs/heads/main/stylesheets/sdfsdf.png");
   width: auto;
   height: 50px;
 }
@@ -235,4 +240,169 @@ form[action="/profile/edit"] input[type="submit"]:hover {
 
 #profile-top {
   background-image: none !important;
+}
+
+
+/* MAIL STYLING CUSTOMIZATION */
+
+.mail-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+}
+
+.mail {
+    background-color: var(--mail-bg, #ffffff); /* fallback if --mail-bg not defined */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: background 0.3s, border-color 0.3s;
+}
+
+/* Remove any background/border image if it exists */
+.mail {
+    background-image: none !important;
+    border-image: none !important;
+}
+
+.mail:hover {
+    background-color: var(--mail-hover-bg, #f5f5f5);
+    border-color: #999;
+}
+
+.mail-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mail-author img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+}
+
+.mail-author-names {
+    display: flex;
+    flex-direction: column;
+}
+
+.mail-author-display-name {
+    font-weight: bold;
+    color: var(--text-color, #222);
+}
+
+.mail-author-username {
+    font-size: 0.85em;
+    color: #666;
+}
+
+.mail-subject-and-date {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.mail-date {
+    font-size: 0.8em;
+    color: #888;
+}
+
+.mail-subject {
+    font-weight: 500;
+    color: var(--link-color, #0066cc);
+    text-decoration: none;
+}
+
+.mail-subject:hover {
+    text-decoration: underline;
+}
+
+:root {
+    --mail-bg: #1b1b1b;
+    --mail-hover-bg: #4c4c4c;
+    --text-color: #fff;
+}
+
+/* Post creation form styling */
+#new-post {
+  background-color: #252525;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px #0000004d;
+  background: none;
+}
+
+#new-post label {
+  color: #fff;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+#new-post textarea {
+  width: 90%;
+  background-color: #2d2d2d;
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  color: #fff;
+  margin-bottom: 16px;
+  resize: vertical;
+  min-height: 80px;
+  font-family: arial;
+}
+
+#new-post textarea::placeholder {
+  color: #777;
+}
+
+#new-post input[type="file"] {
+  background-color: #2d2d2d;
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  color: #fff;
+  width: 95%;
+  margin-bottom: 16px;
+}
+
+.sillycode-guide {
+  color: #5955e8 !important;
+  text-decoration: none !important;
+  font-size: 14px;
+  margin-top: 12px;
+  transition: all .2s;
+}
+
+.sillycode-guide:hover {
+  text-decoration: underline !important;
+  text-shadow: 0 0 3px #5955e880;
+}
+
+/* File input styling */
+#new-post input[type="file"]::-webkit-file-upload-button {
+  background: linear-gradient(#5955e8, #4340b0);
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 12px;
+  transition: all .2s;
+}
+
+#new-post input[type="file"]::-webkit-file-upload-button:hover {
+  background: none;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px #00000040;
 }
