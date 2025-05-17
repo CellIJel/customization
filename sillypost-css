@@ -1,120 +1,238 @@
-/* Make all links white across the site */
+body {
+  background-color: #1b1b1b;
+  font-family: arial;
+}
+
+#profile-posts {
+  color: #fff;
+  background-color: #1b1b1b;
+}
+
+#wrapper, body, #header-left, #header-right, .expand, #navbar {
+  background-color: #1b1b1b;
+  color: #fff;
+}
+
+#navbar, #header, a, #navbar * {
+  border-bottom: #fff;
+  border-right: #fff;
+  border-left: #fff;
+}
+
+#logo {
+  content: url("https://raw.githubusercontent.com/CellIJel/cellijel.github.io/refs/heads/main/stylesheets/favi.png");
+  width: auto;
+  height: 50px;
+}
+
 a {
-    color: white !important;
-    transition: all 0.2s ease;
+  transition: all .2s;
+  color: #fff !important;
 }
 
-/* Ensure hover states are also white with a subtle effect */
 a:hover {
-    color: white !important;
-    text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+  text-shadow: 0 0 3px #ffffff80;
+  color: #fff !important;
 }
 
-/* Target specific link areas if needed */
 #navbar a {
-    color: white !important;
-    padding: 6px 10px;
-    border-radius: 4px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  color: #fff !important;
 }
 
 #navbar a:hover {
-    background-color: rgba(255, 255, 255, 0.15);
+  background-color: #ffffff26;
 }
 
 #header a {
-    color: white !important;
+  color: #fff !important;
 }
 
 #profile-top a {
-    color: white !important;
+  color: #fff !important;
 }
 
 #main a {
-    color: white !important;
+  color: #fff !important;
 }
 
-/* Ensure good visibility on dark backgrounds */
-.post-author-names a, 
-.post-content a {
-    color: white !important;
-    text-decoration: underline;
+.post-author-names a, .post-content a {
+  text-decoration: underline;
+  color: #fff !important;
 }
 
-/* Button styling */
 input[type="submit"], button {
-    background: linear-gradient(to bottom, #5955e8, #4340b0);
-    color: white !important;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 16px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: all 0.2s ease;
+  background: linear-gradient(#5955e8, #4340b0);
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 4px #0003;
+  transition: all .2s;
+  color: #fff !important;
 }
 
 input[type="submit"]:hover, button:hover {
-    background: linear-gradient(to bottom, #6a66ff, #5955e8);
-    transform: translateY(-1px);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(#6a66ff, #5955e8);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px #00000040;
 }
 
 input[type="submit"]:active, button:active {
-    transform: translateY(1px);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px #0003;
 }
 
-/* Search bar styling */
 #search-bar {
-    display: flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    padding: 4px 10px;
-    margin-left: 15px;
+  display: flex;
+  align-items: center;
+  background: #ffffff1a;
+  border-radius: 20px;
+  padding: 4px 10px;
+  margin-left: 15px;
 }
 
 #search-bar label {
-    color: #aaa;
-    margin-right: 8px;
+  color: #aaa;
+  margin-right: 8px;
 }
 
 #search-bar input[type="search"] {
-    background: transparent;
-    border: none;
-    color: white;
-    padding: 6px;
-    width: 150px;
-    outline: none;
-    font-size: 14px;
+  background: none;
+  border: none;
+  color: #fff;
+  padding: 6px;
+  width: 150px;
+  outline: none;
+  font-size: 14px;
 }
 
 #search-bar input[type="search"]::placeholder {
-    color: #777;
+  color: #777;
 }
 
 #search-bar input[type="submit"] {
-    background: #5955e8;
-    border-radius: 15px;
-    padding: 5px 12px;
-    font-size: 12px;
+  background: #5955e8;
+  border-radius: 15px;
+  padding: 5px 12px;
+  font-size: 12px;
 }
 
-/* Colonthree button styling */
 .ctform button {
-    background: #5955e8;
-    color: white;
-    border-radius: 50px;
-    font-size: 12px;
-    padding: 3px 10px;
+  background: #5955e8;
+  color: #fff;
+  border-radius: 50px;
+  font-size: 12px;
+  padding: 3px 10px;
 }
 
-/* Profile edit button */
 form[action="/profile/edit"] input[type="submit"] {
-    background: linear-gradient(to bottom, #FF9966, #FF5E62);
-    padding: 6px 14px;
+  background: linear-gradient(#f96, #ff5e62);
+  padding: 6px 14px;
 }
 
 form[action="/profile/edit"] input[type="submit"]:hover {
-    background: linear-gradient(to bottom, #FF5E62, #FF9966);
+  background: linear-gradient(#ff5e62, #f96);
+}
+
+.post {
+  transition: transform .2s, box-shadow .2s;
+  border: none !important;
+  background-image: none !important;
+  background-color: #252525 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px #0000004d !important;
+  margin-bottom: 20px !important;
+  padding: 16px !important;
+}
+
+.post:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px #0006 !important;
+}
+
+.post-author {
+  display: flex !important;
+  align-items: center !important;
+  padding: 8px !important;
+  margin-bottom: 12px !important;
+  background-color: #2a2a2a !important;
+  border-radius: 6px !important;
+  text-decoration: none !important;
+}
+
+.post-author img {
+  border-radius: 50% !important;
+  border: 2px solid #5955e8 !important;
+  margin-right: 10px !important;
+}
+
+.post-content {
+  color: #e0e0e0 !important;
+  line-height: 1.5 !important;
+  font-size: 15px !important;
+  padding: 10px 5px !important;
+  background-color: #2d2d2d !important;
+  border-radius: 6px !important;
+  margin: 10px 0 !important;
+}
+
+.post-date {
+  color: #888 !important;
+  font-size: 12px !important;
+  text-align: right !important;
+  margin-top: 8px !important;
+  font-style: italic !important;
+}
+
+.post-author-display-name {
+  color: #fff !important;
+  font-weight: bold !important;
+  font-size: 16px !important;
+}
+
+.post-author-username {
+  color: #aaa !important;
+  font-size: 13px !important;
+  margin-left: 5px !important;
+}
+
+.post-author-currencies {
+  margin-top: 4px !important;
+}
+
+.post-author-beans, .post-author-ipods {
+  background-color: #0003 !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  margin-right: 6px !important;
+  font-size: 12px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.post-author-beans img, .post-author-ipods img {
+  height: 14px !important;
+  width: auto !important;
+  margin-right: 4px !important;
+  border: none !important;
+}
+
+.post-author-colonthree {
+  background-color: #3a3a3a !important;
+  padding: 3px 8px !important;
+  border-radius: 12px !important;
+  font-size: 12px !important;
+  color: #ccc !important;
+}
+
+#profile-posts {
+  padding: 15px 0 !important;
+  background-color: #0000 !important;
+}
+
+#profile-top {
+  background-image: none !important;
 }
