@@ -12,7 +12,7 @@
 (function() {
     'use strict';
 
-    // Create and inject CSS for the widget
+    // Create and inject CSS for the widget and flash overlay
     const styleSheet = document.createElement('style');
     styleSheet.textContent = `
         #market-widget {
@@ -30,6 +30,23 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
             cursor: move;
             user-select: none;
+        }
+
+        #price-flash-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0;
+            transition: opacity 0.5s ease-out;
+        }
+
+        #price-flash-overlay.flash {
+            opacity: 0.2;
+            transition: none;
         }
 
         #market-widget.minimized {
@@ -107,8 +124,21 @@
             flex-direction: column;
             gap: 5px;
         }
+
+        .price-up {
+            color: #00ff00;
+        }
+
+        .price-down {
+            color: #ff4444;
+        }
     `;
     document.head.appendChild(styleSheet);
+
+    // Create flash overlay
+    const overlay = document.createElement('div');
+    overlay.id = 'price-flash-overlay';
+    document.body.appendChild(overlay);
 
     // Create widget HTML
     const widget = document.createElement('div');
@@ -131,6 +161,21 @@
     `;
     document.body.appendChild(widget);
 
+    // Keep track of previous price
+    let previousPrice = null;
+
+    // Flash screen function
+    function flashScreen(priceUp) {
+        const overlay = document.getElementById('price-flash-overlay');
+        overlay.style.backgroundColor = priceUp ? '#00ff00' : '#ff0000';
+        overlay.classList.add('flash');
+
+        // Remove flash after a short delay
+        setTimeout(() => {
+            overlay.classList.remove('flash');
+        }, 200);
+    }
+
     // Make widget draggable
     let isDragging = false;
     let currentX;
@@ -145,7 +190,6 @@
     document.addEventListener('mouseup', dragEnd);
 
     function dragStart(e) {
-        // Don't initiate drag if clicking on a button or the title link
         if (e.target.classList.contains('widget-button') || e.target.classList.contains('market-title')) return;
 
         initialX = e.clientX - xOffset;
@@ -190,6 +234,7 @@
 
     closeBtn.addEventListener('click', () => {
         widget.remove();
+        overlay.remove();
     });
 
     // Get owned sillies
@@ -219,6 +264,19 @@
             const priceElm = document.getElementById('market-price');
             const ownedElm = document.getElementById('market-owned');
 
+            // Check if price changed and flash screen
+            if (previousPrice !== null && state.price !== previousPrice) {
+                const priceUp = state.price > previousPrice;
+                flashScreen(priceUp);
+
+                // Add temporary color to price
+                priceElm.classList.add(priceUp ? 'price-up' : 'price-down');
+                setTimeout(() => {
+                    priceElm.classList.remove('price-up', 'price-down');
+                }, 1000);
+            }
+            previousPrice = state.price;
+
             let statusText = '';
             let statusClass = '';
 
@@ -247,7 +305,7 @@
 
             statusElm.textContent = statusText;
             statusElm.className = `status-color-${statusClass}`;
-            priceElm.textContent = `Price: ${state.price} dollars`;
+            priceElm.textContent = `Price: ${state.price} beans`;
 
             if (ownedSillies !== null) {
                 ownedElm.textContent = `Owned: ${ownedSillies} sillies`;
