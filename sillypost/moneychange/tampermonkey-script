@@ -1,0 +1,38 @@
+// ==UserScript==
+// @name         Sillypost Currency Renamer
+// @namespace    http://tampermonkey.net/
+// @version      0.3
+// @description  Change "beans" to "dollars" and "ipods" to "plaques" on Sillypost
+// @author       CellIJel
+// @match        https://sillypost.net/*
+// @grant        none
+// @run-at       document-end
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    window.addEventListener('load', function() {
+        // Change beans to dollars
+        const beansElement = document.querySelector('#header-beans');
+        if (beansElement) {
+            const beansText = beansElement.textContent;
+            const beansNumber = beansText.match(/\d+/)?.[0] || '';
+            beansElement.innerHTML = `<img src="https://github.com/CellIJel/css/blob/main/sillypost/desilly/sillyD.png?raw=true" alt="dollars"> ${beansNumber} dollars`;
+        }
+
+        // Change ipods to plaques
+        const ipodsElement = document.querySelector('#header-ipods');
+        if (ipodsElement) {
+            const ipodsText = ipodsElement.textContent;
+            const ipodsNumber = ipodsText.match(/\d+/)?.[0] || '';
+            ipodsElement.innerHTML = `<img src="https://github.com/CellIJel/css/blob/main/sillypost/desilly/sillyP.png?raw=true" alt="plaques"> ${ipodsNumber} plaques`;
+        }
+
+        const quartersElement = document.querySelector('#header-quarters');
+        if (quartersElement) {
+            const quartersText = quartersElement.textContent;
+            const quartersNumber = quartersText.match(/\d+/)?.[0] || '';
+            quartersElement.innerHTML = `<img src="https://github.com/CellIJel/css/blob/main/sillypost/desilly/sillyC.png?raw=true" alt="quarters"> ${quartersNumber} quarters`;
+    }});
+})();
