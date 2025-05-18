@@ -13,8 +13,12 @@ body {
 
 #stats .user, #stats {
   background-color: #2f2f2f !important;
-  background: none;
   border-image: none !important;
+  background: linear-gradient(to left, #424242, #2c2c2c)
+}
+
+.user:nth-child(odd) {
+    background: linear-gradient(to right, #2f2f2f, #424242);
 }
 
 #directory .user-ipods img {
