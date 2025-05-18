@@ -10,6 +10,10 @@ body {
   box-shadow: none;
 }
 
+.item {
+  border-image: none !important;
+}
+
 #profile-posts {
   color: #fff;
   background-color: #1b1b1b;
