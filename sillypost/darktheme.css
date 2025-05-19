@@ -21,10 +21,6 @@ body {
     background: linear-gradient(to right, #2f2f2f, #424242);
 }
 
-#directory .user-ipods img {
-  content: url(https://github.com/CellIJel/customization/blob/main/sillypost/exchange/sillyP.png?raw=true);
-}
-
 #wrapper {
   box-shadow: none;
 }
