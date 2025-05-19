@@ -2,16 +2,21 @@
 // @name         Sillypost Market Widget - Universal
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  Shows Sillypost market status on any website
+// @description  Shows Sillypost market status on any website except Sillypost itself
 // @author       CellIJel
 // @match        *://*/*
+// @exclude      *://*.sillypost.net/*
 // @connect      sillypost.net
 // @grant        GM_xmlhttpRequest
+// @grant        window.focus
 // @run-at       document-idle
 // ==/UserScript==
 
 (function() {
     'use strict';
+
+    let popoutWindow = null;
+    let previousPrice = null;
 
     // Create and inject CSS for the widget and flash overlay
     const styleSheet = document.createElement('style');
@@ -32,25 +37,6 @@
             cursor: move;
             user-select: none;
         }
-
-        #sillypost-market-widget .sillypost-market-title {
-    transition: all .2s;
-    color: #fff !important;
-    font-weight: bold;
-    font-family: arial;
-}
-
-       #sillypost-market-widget .sillypost-market-title:hover {
-    text-shadow: 0 0 3px #ffffff80;
-    color: #fff !important;
-    font-weight: bold;
-    font-family: arial;
-}
-
-        #sillypost-market-widget .sillypost-widget-button {
-    font-weight: bold;
-    color: #fff !important;
-}
 
         #sillypost-price-flash-overlay {
             position: fixed;
@@ -87,18 +73,10 @@
             margin: 0;
         }
 
-        button:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 3px 6px #00000040;
-        background: none;
-        }
-
         .sillypost-market-title {
             cursor: pointer;
             color: #fff;
             text-decoration: none;
-            font-weight: bold;
-            font-family: arial;
         }
 
         .sillypost-market-title:hover {
@@ -124,13 +102,15 @@
             gap: 5px;
         }
 
-        .sillypost-widget-button {
+        #sillypost-market-widget .sillypost-widget-button {
             background: none;
             border: none;
-            color: #fff;
+            color: #fff !important;
             cursor: pointer;
             font-size: 12px;
             padding: 2px;
+            font-weight: bold;
+            transition: all .2s;
         }
 
         .sillypost-widget-button:hover {
@@ -141,24 +121,33 @@
             display: none;
         }
 
+        #sillypost-market-widget .sillypost-market-title {
+            transition: all .2s;
+            color: #fff !important;
+            font-weight: bold;
+            font-family: arial;
+        }
+
+        #sillypost-market-widget .sillypost-market-title:hover {
+            text-shadow: 0 0 3px #ffffff80;
+            color: #fff !important;
+            font-weight: bold;
+            font-family: arial;
+        }
+
         .status-color-swag { color: #ff4444; }
         .status-color-soback { color: #ffaa00; }
         .status-color-mid { color: #888888; }
         .status-color-inshambles { color: #44bb44; }
         .status-color-soover { color: #00ff00; }
 
+        .price-up { color: #00ff00; }
+        .price-down { color: #ff4444; }
+
         .sillypost-market-stats {
             display: flex;
             flex-direction: column;
             gap: 5px;
-        }
-
-        .price-up {
-            color: #00ff00;
-        }
-
-        .price-down {
-            color: #ff4444;
         }
     `;
     document.head.appendChild(styleSheet);
@@ -168,6 +157,61 @@
     overlay.id = 'sillypost-price-flash-overlay';
     document.body.appendChild(overlay);
 
+    // HTML template for the pop-out window
+    const popoutHTML = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Sillypost Market Status</title>
+            <style>
+                body {
+                    margin: 0;
+                    padding: 10px;
+                    background: #282828;
+                    color: white;
+                    font-family: arial, sans-serif;
+                }
+                .sillypost-market-stats {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    text-align: center;
+                }
+                #sillypost-market-status {
+                    font-size: 16px;
+                    font-weight: bold;
+                }
+                .status-color-swag { color: #ff4444; }
+                .status-color-soback { color: #ffaa00; }
+                .status-color-mid { color: #888888; }
+                .status-color-inshambles { color: #44bb44; }
+                .status-color-soover { color: #00ff00; }
+                .price-up { color: #00ff00; }
+                .price-down { color: #ff4444; }
+                h3 {
+                    margin: 0 0 10px 0;
+                    text-align: center;
+                }
+                a {
+                    color: white;
+                    text-decoration: none;
+                }
+                a:hover {
+                    text-decoration: underline;
+                }
+            </style>
+        </head>
+        <body>
+            <h3><a href="https://sillypost.net/games/sillyexchange" target="_blank">Sillypost Market</a></h3>
+            <div class="sillypost-market-stats">
+                <div id="sillypost-market-status">Loading...</div>
+                <div id="sillypost-market-price">Price: ... beans</div>
+                <div id="sillypost-market-owned">Owned: ... sillies</div>
+            </div>
+        </body>
+        </html>
+    `;
+
     // Create widget HTML
     const widget = document.createElement('div');
     widget.id = 'sillypost-market-widget';
@@ -175,6 +219,7 @@
         <h3>
             <a href="https://sillypost.net/games/sillyexchange" class="sillypost-market-title" target="_blank">Sillypost Market</a>
             <div class="sillypost-widget-controls">
+                <button class="sillypost-widget-button popout-btn" title="Pop out">⇱</button>
                 <button class="sillypost-widget-button minimize-btn">_</button>
                 <button class="sillypost-widget-button close-btn">×</button>
             </div>
@@ -188,9 +233,6 @@
         </div>
     `;
     document.body.appendChild(widget);
-
-    // Keep track of previous price
-    let previousPrice = null;
 
     // Flash screen function
     function flashScreen(priceUp) {
@@ -250,9 +292,34 @@
         el.style.transform = `translate(${xPos}px, ${yPos}px)`;
     }
 
+    // Function to handle pop-out window
+    function createPopout() {
+        // Close existing popout if it exists
+        if (popoutWindow && !popoutWindow.closed) {
+            popoutWindow.close();
+        }
+
+        // Create new popout window
+        popoutWindow = window.open('', 'SillypostMarket', 'width=250,height=150,resizable=yes');
+        popoutWindow.document.write(popoutHTML);
+
+        // Hide the main widget when popped out
+        widget.style.display = 'none';
+
+        // Update the pop-out window when the original updates
+        updateMarketStatus(true);
+
+        // Show the main widget again when pop-out is closed
+        popoutWindow.onbeforeunload = () => {
+            widget.style.display = 'block';
+            popoutWindow = null;
+        };
+    }
+
     // Widget controls
     const minimizeBtn = widget.querySelector('.minimize-btn');
     const closeBtn = widget.querySelector('.close-btn');
+    const popoutBtn = widget.querySelector('.popout-btn');
 
     minimizeBtn.addEventListener('click', () => {
         widget.classList.toggle('minimized');
@@ -263,6 +330,8 @@
         widget.remove();
         overlay.remove();
     });
+
+    popoutBtn.addEventListener('click', createPopout);
 
     // Make cross-origin request to Sillypost
     function makeRequest(url, method) {
@@ -300,7 +369,7 @@
     }
 
     // Market status update function
-    async function updateMarketStatus() {
+    async function updateMarketStatus(isPopout = false) {
         try {
             const [marketResponse, ownedSillies] = await Promise.all([
                 makeRequest('/games/sillyexchange', 'POST'),
@@ -308,16 +377,19 @@
             ]);
 
             const state = JSON.parse(marketResponse);
-            const statusElm = document.getElementById('sillypost-market-status');
-            const priceElm = document.getElementById('sillypost-market-price');
-            const ownedElm = document.getElementById('sillypost-market-owned');
+            const doc = isPopout && popoutWindow ? popoutWindow.document : document;
+
+            const statusElm = doc.getElementById('sillypost-market-status');
+            const priceElm = doc.getElementById('sillypost-market-price');
+            const ownedElm = doc.getElementById('sillypost-market-owned');
+
+            if (!statusElm || !priceElm || !ownedElm) return;
 
             // Check if price changed and flash screen
-            if (previousPrice !== null && state.price !== previousPrice) {
+            if (!isPopout && previousPrice !== null && state.price !== previousPrice) {
                 const priceUp = state.price > previousPrice;
                 flashScreen(priceUp);
 
-                // Add temporary color to price
                 priceElm.classList.add(priceUp ? 'price-up' : 'price-down');
                 setTimeout(() => {
                     priceElm.classList.remove('price-up', 'price-down');
@@ -363,11 +435,20 @@
 
         } catch (error) {
             console.error('Error updating market status:', error);
-            document.getElementById('sillypost-market-status').textContent = 'Error loading status';
+            const doc = isPopout && popoutWindow ? popoutWindow.document : document;
+            const statusElm = doc.getElementById('sillypost-market-status');
+            if (statusElm) {
+                statusElm.textContent = 'Error loading status';
+            }
         }
     }
 
     // Initial update and set interval
     updateMarketStatus();
-    setInterval(updateMarketStatus, 20000); // Update every 20 seconds
+    setInterval(() => {
+        updateMarketStatus();
+        if (popoutWindow && !popoutWindow.closed) {
+            updateMarketStatus(true);
+        }
+    }, 20000);
 })();
