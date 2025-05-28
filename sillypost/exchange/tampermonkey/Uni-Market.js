@@ -4,8 +4,7 @@
 // @version      0.1
 // @description  Shows Sillypost market status on any website except Sillypost itself
 // @author       CellIJel
-// @match        *://*/*
-// @exclude      *://*.sillypost.net/*
+// @match        *://*/*
 // @connect      sillypost.net
 // @grant        GM_xmlhttpRequest
 // @grant        window.focus
