@@ -25,6 +25,16 @@ input[type="submit"][value="logout"], #logo, input[type="submit"][value="setting
   content:url('https://raw.githubusercontent.com/CellIJel/cellijel.github.io/refs/heads/main/stylesheets/fdsfds.png')
 }
 
+#editor {
+  background-color: #1e1e2d;
+  color: #ffffff;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  background-image: linear-gradient(#1e1e2d, #1e1e2d), linear-gradient(152deg, #7c3aed, #ec4899, #f59e0b);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
 #sillymarket-area {
   border-image: none !important;
 }
