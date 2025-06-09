@@ -1,6 +1,6 @@
 body {
   color: #ffffff;
-  font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif !important;
   background-color: #1e1e2d;
 }
 
@@ -385,10 +385,26 @@ form[action="/beans/dailyclaim"] button:disabled {
     0 0 40px rgba(124, 58, 237, 0.6),
     0 0 60px rgba(245, 158, 11, 0.4);
   border-bottom: 6px solid transparent;
+  border-image: none !important;
 }
 
 #skills {
   background: #232333;
   box-shadow: 0 2px 8px #0000004d !important;
   border-radius: 8px;
+}
+
+h1 {
+  text-align: center;
+}
+
+h1::after {
+  content: "If things look blury, it's because the website, I unfortunately can't do anything about it with CSS";
+  display: block;
+  margin-top: 12px;
+  font-size: 10px;
+  color: #bdbdd7;
+  font-weight: normal;
+  opacity: 0.85;
+  text-align: center;
 }
