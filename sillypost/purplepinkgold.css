@@ -385,7 +385,9 @@ input[type="file"]::file-selector-button:active {
 }
 
 /* Style for daily beans claim form/button */
-form[action="/beans/dailyclaim"] button {
+form[action="/beans/dailyclaim"] button,
+#silly-buy,
+#silly-sell {
   background: linear-gradient(152deg, #7c3aed, #ec4899, #f59e0b);
   color: #fff !important;
   border: none;
@@ -403,18 +405,24 @@ form[action="/beans/dailyclaim"] button {
   isolation: isolate;
 }
 
-form[action="/beans/dailyclaim"] button:hover {
+form[action="/beans/dailyclaim"] button:hover,
+#silly-buy:hover,
+#silly-sell:hover {
   box-shadow: 0 0 30px rgba(236, 72, 153, 1), 0 0 50px rgba(124, 58, 237, 0.8), 0 0 70px rgba(245, 158, 11, 0.6)
-  }
+}
 
-form[action="/beans/dailyclaim"] button:disabled {
+form[action="/beans/dailyclaim"] button:disabled,
+#silly-buy:disabled,
+#silly-sell:disabled {
   background: gray !important;
   box-shadow: none !important;
   cursor: not-allowed !important;
   opacity: 0.5 !important;
 }
 
-form[action="/beans/dailyclaim"] button:disabled:hover {
+form[action="/beans/dailyclaim"] button:disabled:hover,
+#silly-buy:disabled:hover,
+#silly-sell:disabled:hover {
   box-shadow: 0 0 30px gray !important;
 }
 
@@ -491,6 +499,21 @@ h1:hover::after {
 }
 
 .user input[type="submit"][value="cancel request :("], .user input[type="submit"][value="unfriend :("] {
+  color: #fff;
+  background-color: #1e1e2d;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  background-image: linear-gradient(#1e1e2d, #1e1e2d), linear-gradient(152deg, #7c3aed, #ec4899, #f59e0b);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  -webkit-background-clip: padding-box, border-box;
+  -webkit-text-fill-color: #fff;
+}
+
+/* Spinner buttons are complicated to change with just CSS, especially in FireFox. 
+If you can find a way to change them reliably, please make a pr or issue on GitHub.
+CellIJel/customization */
+#silly-count {
   color: #fff;
   background-color: #1e1e2d;
   border: 2px solid transparent;
