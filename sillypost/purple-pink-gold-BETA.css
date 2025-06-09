@@ -393,12 +393,12 @@ form[action="/beans/dailyclaim"] button:disabled {
   box-shadow: 0 2px 8px #0000004d !important;
   border-radius: 8px;
 }
-
-h1 {
+/* vvv This code is the disclaimer vvv */
+h1, h2 {
   text-align: center;
 }
 
-h1::after {
+h1::after, h2::after {
   content: "Possible blurry visuals are due to the website's code.";
   display: block;
   margin-top: 12px;
@@ -410,7 +410,7 @@ h1::after {
   cursor: help;
 }
 
-h1:hover::after {
+h1:hover::after, h2:hover::after {
   content: "This issue cannot be resolved with CSS.";
   background: #1e1e2d;
   color: #bdbdd7;
@@ -421,7 +421,7 @@ h1:hover::after {
 opacity: 0.85;
   display: block;
 }
-
+/* ^^^ This code is the disclaimer ^^^ */
 .game, .item {
   border-image: none !important;
 }
@@ -443,4 +443,16 @@ opacity: 0.85;
 
 .item input[type="submit"][value="cannot afford!"]:disabled:hover {
   box-shadow: 0 0 30px gray !important;
+}
+
+.user input[type="submit"][value="cancel request :("] {
+  color: #fff;
+  background-color: #1e1e2d;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  background-image: linear-gradient(#1e1e2d, #1e1e2d), linear-gradient(152deg, #7c3aed, #ec4899, #f59e0b);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  -webkit-background-clip: padding-box, border-box;
+  -webkit-text-fill-color: #fff;
 }
