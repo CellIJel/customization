@@ -399,7 +399,7 @@ h1 {
 }
 
 h1::after {
-  content: "If things look blury, it's because the website, I unfortunately can't do anything about it with CSS";
+  content: "Possible blurry visuals are due to the website's code.";
   display: block;
   margin-top: 12px;
   font-size: 10px;
@@ -407,4 +407,40 @@ h1::after {
   font-weight: normal;
   opacity: 0.85;
   text-align: center;
+  cursor: help;
+}
+
+h1:hover::after {
+  content: "This issue cannot be resolved with CSS.";
+  background: #1e1e2d;
+  color: #bdbdd7;
+  margin-top: 12px;
+  border-radius: 5px;
+  font-size: 10px;
+  white-space: nowrap;
+opacity: 0.85;
+  display: block;
+}
+
+.game, .item {
+  border-image: none !important;
+}
+
+#game-area, #game-area #guesses {
+  color: black !important;
+}
+
+.item p {
+  color: #8e8ea4
+}
+
+.item input[type="submit"][value="cannot afford!"]:disabled {
+  background: gray !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+  opacity: 0.5 !important;
+}
+
+.item input[type="submit"][value="cannot afford!"]:disabled:hover {
+  box-shadow: 0 0 30px gray !important;
 }
