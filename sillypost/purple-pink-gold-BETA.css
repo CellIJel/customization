@@ -35,6 +35,104 @@ input[type="submit"][value="logout"], #logo, input[type="submit"][value="setting
   background-clip: padding-box, border-box;
 }
 
+/* Fix for group text visibility */
+.group .group-display-name,
+.group .group-description,
+.group .group-name,
+.group .group-member-count, h6 {
+  background: linear-gradient(152deg, #7c3aed, #ec4899, #f59e0b);
+  text-shadow:
+    0 0 20px rgba(236, 72, 153, 0.8),
+    0 0 40px rgba(124, 58, 237, 0.6),
+    0 0 60px rgba(245, 158, 11, 0.4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+}
+.group img {
+  box-shadow:
+    0 8px 32px 0 rgba(124, 58, 237, 0.65),   
+    0 0 0 0px rgba(245, 159, 11, 0.342);      
+  border: 3px solid #ec4899; /* fallback solid color */
+  border: 3px solid transparent;
+  border-radius: 18px;
+  background: linear-gradient(#1e1e2d, #1e1e2d) padding-box,
+              linear-gradient(152deg, #ec4899, #f59e0b) border-box;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+
+a[href="https://sillypost.net/groups/create"] {
+  display: inline-block;
+  margin: 18px 0 12px 0;
+  font-size: 17px;
+  font-weight: bold;
+  background: linear-gradient(152deg, #f43f5e, #f59e42, #22d3ee, #a21caf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+  text-shadow:
+    0 0 24px #f43f5e,
+    0 0 48px #22d3ee,
+    0 0 72px #f59e42,
+    0 0 96px #a21caf;
+  transition: text-shadow 0.3s, color 0.3s;
+  position: relative;
+}
+
+a[href="https://sillypost.net/groups/create"]:hover {
+  text-shadow:
+    0 0 36px #f43f5e,
+    0 0 60px #22d3ee,
+    0 0 90px #f59e42,
+    0 0 120px #a21caf;
+}
+
+a[href="https://sillypost.net/groups/create"]::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #f43f5e, #f59e42, #22d3ee, #a21caf);
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 0 16px #f43f5e, 0 0 24px #22d3ee;
+}
+
+a[href="https://sillypost.net/groups/create"]:hover::after {
+  width: 100%;
+}
+
+.group .group-name{
+  background: linear-gradient(152deg, #7c3aed, #ec4899);
+  text-shadow:
+    0 0 20px rgba(236, 72, 153, 0.8),
+    0 0 40px rgba(124, 58, 237, 0.6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+}
+
+/* Alternative fix - override the general link styling for groups */
+.group {
+  -webkit-text-fill-color: #ffffff !important;
+  color: #ffffff !important;
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+/* Keep the gradient effect only for the group links themselves on hover */
+.group:hover .group-display-name {
+  background: linear-gradient(152deg, #7c3aed, #ec4899, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 #sillymarket-area {
   border-image: none !important;
 }
@@ -49,6 +147,16 @@ input#username {
   background-clip: padding-box, border-box;
   margin-right: 7px;
   margin-left: none
+}
+
+form #query {
+  background-color: #1e1e2d;
+  color: #ffffff;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  background-image: linear-gradient(#1e1e2d, #1e1e2d), linear-gradient(152deg, #7c3aed, #ec4899, #f59e0b);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
 }
 
 #navbar, #header, a, #navbar * {
