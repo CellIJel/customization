@@ -1,0 +1,258 @@
+body {
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  background-color: #1e1e2d;
+}
+
+#wrapper, #main, #left-side, #new-post, #header {
+  background: #1e1e2d
+}
+
+#wrapper {
+  box-shadow: 0 0 2000px #4e4e73;
+}
+
+#search-bar label {
+  color: #1e1e2d;
+  display: none;
+}
+
+input[type="submit"][value="logout"], #logo, input[type="submit"][value="settings"], #header-avatar, #header-welcome {
+  margin-right: 17px
+}
+
+#logo {
+  content:url('https://raw.githubusercontent.com/CellIJel/cellijel.github.io/refs/heads/main/stylesheets/fdsfds.png')
+}
+
+#sillymarket-area {
+  border-image: none !important;
+}
+
+input#username {
+  background-color: #1e1e2d;
+  color: #ffffff;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  background-image: linear-gradient(#1e1e2d, #1e1e2d), linear-gradient(152deg, #7c3aed, #ec4899, #f59e0b);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  margin-right: 7px;
+  margin-left: none
+}
+
+#navbar, #header, a, #navbar * {
+  background-color: #1e1e2d !important;
+  border-bottom: transparent;
+  border-right: transparent;
+  border-left: transparent;
+}
+
+#navbar {
+  font-size: 15.2px !important;
+}
+
+.post:nth-child(2n) {
+  border: none !important;
+  background: transparent
+}
+
+#posts, .post {
+  border: none !important;
+  background: transparent;
+}
+
+.post-date {
+  padding-right: 255px; /* Adds space to the right */
+  border-bottom: 1px solid currentColor; /* Alternative underline that extends */
+  text-decoration: none; /* Remove default underline when using border */
+}
+
+.ctform button {
+  background: linear-gradient(152deg, #7c3aed, #ec4899, #f59e0b);
+  color: #fff !important;
+  border: none;
+  border-radius: 24px;
+  padding: 3px 10px;
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: 0 2px 12px 0 rgba(124,58,237,0.15);
+  cursor: pointer;
+  transition: background 0.3s, box-shadow 0.3s;
+  outline: none;
+  margin: 4px 0;
+  display: inline-block;
+  position: relative;
+  isolation: isolate;
+}
+
+.ctform button:hover {
+  background: linear-gradient(152deg, #ec4899, #7c3aed, #f59e0b);
+  color: #fff !important;
+  box-shadow: 0 4px 20px 0 rgba(236,72,153,0.25);
+}
+
+.ctform button:active {
+  background: linear-gradient(152deg, #7c3aed, #f59e0b, #ec4899);
+}
+
+/* Override link styles for .ctform and its button when inside an <a> tag */
+a .ctform {
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-text-fill-color: white !important;
+  color: white !important;
+  text-shadow: none !important;
+}
+
+a .ctform button {
+  background: linear-gradient(152deg, #7c3aed, #ec4899) !important;
+  color: white !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-text-fill-color: white !important;
+  text-shadow: none !important;
+}
+
+a .ctform button:hover {
+  background-color: #059669 !important;
+  color: white !important;
+  -webkit-text-fill-color: white !important;
+  text-shadow: none !important;
+}
+
+.post-author {
+    text-shadow: none !important;
+}
+
+/* Prevent the form from inheriting link pseudo-element */
+a .ctform::after {
+  display: none !important;
+}
+
+a .ctform button::after {
+  display: none !important;
+}
+
+a {
+  background: linear-gradient(152deg, #7c3aed, #ec4899, #f59e0b);
+  text-shadow:
+    0 0 20px rgba(236, 72, 153, 0.8),
+    0 0 40px rgba(124, 58, 237, 0.6),
+    0 0 60px rgba(245, 158, 11, 0.4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Animated underline effect */
+a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #7c3aed, #ec4899, #f59e0b);
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 0 10px rgba(236, 72, 153, 0.6);
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+a:hover {
+  text-shadow:
+    0 0 30px rgba(236, 72, 153, 1),
+    0 0 50px rgba(124, 58, 237, 0.8),
+    0 0 70px rgba(245, 158, 11, 0.6);
+}
+
+/* Modern input button styles */
+input[type="submit"],
+input[type="button"] {
+  background: linear-gradient(152deg, #7c3aed, #ec4899, #f59e0b);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 3px 10px;
+
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, box-shadow 0.3s;
+  outline: none;
+  margin: 4px 0;
+}
+
+input[type="submit"]:hover,
+input[type="button"]:hover {
+  background: linear-gradient(152deg, #7c3aed, #ec4899, #f59e0b);
+  box-shadow: 0 0 30px rgba(236, 72, 153, 1),
+    0 0 50px rgba(124, 58, 237, 0.8),
+    0 0 70px rgba(245, 158, 11, 0.6);
+}
+
+input[type="submit"]:active,
+input[type="button"]:active {
+  background: linear-gradient(152deg, #7c3aed, #ec4899, #f59e0b);
+}
+
+/* Style file input button */
+input[type="file"]::file-selector-button {
+  background: linear-gradient(152deg, #7c3aed, #ec4899, #f59e0b);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 3px 10px;
+
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, box-shadow 0.3s;
+  outline: none;
+  margin-right: 8px;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: linear-gradient(152deg, #7c3aed, #ec4899, #f59e0b);
+box-shadow: 0 0 30px rgba(236, 72, 153, 1),
+    0 0 50px rgba(124, 58, 237, 0.8),
+    0 0 70px rgba(245, 158, 11, 0.6);}
+
+input[type="file"]::file-selector-button:active {
+  background: linear-gradient(152deg, #7c3aed, #ec4899, #f59e0b);
+}
+
+/* Style for daily beans claim form/button */
+form[action="/beans/dailyclaim"] button {
+  background: linear-gradient(152deg, #7c3aed, #ec4899, #f59e0b);
+  color: #fff !important;
+  border: none;
+  border-radius: 24px;
+  padding: 3px 18px;
+  font-weight: bold;
+  font-size: 15px;
+  box-shadow: 0 2px 12px 0 rgba(124,58,237,0.15);
+  cursor: pointer;
+  transition: background 0.3s, box-shadow 0.3s, opacity 0.3s;
+  outline: none;
+  margin: 8px 0 16px 0;
+  display: inline-block;
+  position: relative;
+  isolation: isolate;
+}
+
+form[action="/beans/dailyclaim"] button:hover {
+  box-shadow: 0 0 30px rgba(236, 72, 153, 1), 0 0 50px rgba(124, 58, 237, 0.8), 0 0 70px rgba(245, 158, 11, 0.6)
+  }
+
+form[action="/beans/dailyclaim"] button:disabled {
+  background: gray !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+  opacity: 0.5 !important;
+}
