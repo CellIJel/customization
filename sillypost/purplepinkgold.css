@@ -498,7 +498,7 @@ h1:hover::after {
   box-shadow: 0 0 30px gray !important;
 }
 
-.user input[type="submit"][value="cancel request :("], .user input[type="submit"][value="unfriend :("] {
+.user input[type="submit"][value="cancel request :("], .user input[type="submit"][value="unfriend :("], .user input[type="submit"][value="accept friend request!"], .user input[type="submit"][value="deny friend :("] {
   color: #fff;
   background-color: #1e1e2d;
   border: 2px solid transparent;
